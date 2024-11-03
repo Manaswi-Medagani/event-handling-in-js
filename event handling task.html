@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation and Events</title>
+    <style>
+        #image-container {
+            text-align: center;
+            margin: 20px;
+        }
+        #myImage {
+            width: 300px;
+            transition: opacity 0.5s; 
+        }
+        #button-container {
+            text-align: center;
+            margin: 20px;
+        }
+        .opacity-button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="content">
+        <h1 id="header">Change Image Opacity</h1>
+        <p id="description">Click the buttons below to adjust the opacity of the image.</p>
+    </div>
+
+    <div id="image-container">
+        <img id="myImage" src="nazriya.jpg" alt="Image">
+    </div>
+
+    <div id="button-container">
+        
+    </div>
+
+    <script>
+        
+        const buttonContainer = document.getElementById('button-container');
+        const header = document.getElementById('header');
+        const description = document.getElementById('description');
+        const image = document.getElementById('myImage');
+
+       
+        for (let i = 0; i <= 10; i++) {
+            const button = document.createElement('button');
+            button.className = 'opacity-button';
+            button.innerText = `Opacity ${i * 0.1}`;
+            button.dataset.opacity = i * 0.1; 
+
+            
+            button.addEventListener('click', () => {
+               
+                image.style.opacity = button.dataset.opacity;
+
+               
+                description.innerText = `Current Opacity: ${button.dataset.opacity}`;
+
+             
+                header.style.color = `rgba(0, 100, 200, ${button.dataset.opacity})`;
+            });
+
+            
+            buttonContainer.appendChild(button);
+        }
+    </script>
+</body>
+</html>
